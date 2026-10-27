@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de Resultados · Dr. Luiz Nadler</title>
+<meta name="theme-color" content="#070707">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050505'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='%23C6AE86' text-anchor='middle' letter-spacing='-1'%3ELN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Montserrat:wght@200;600&display=swap" rel="stylesheet">
+<style>
+/* Painel de demonstração para a proposta. NÚMEROS ILUSTRATIVOS: a faixa do topo diz isso.
+   Mesma linguagem do site (preto + champanhe, Bodoni Moda). Os períodos são escalas de um mesmo
+   mês-base, para os números conversarem entre si. */
+:root{--preto:#070707;--card:#111113;--borda:#1f1f22;--marfim:#eee9e1;--cinza:#8d8a84;--champ:#c6ae86;--champ2:#e3d2b2;--verde:#5fbf7f}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--preto);color:var(--marfim);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.aviso{background:var(--champ);color:#0b0b0b;text-align:center;font-size:12px;font-weight:500;padding:9px 16px;letter-spacing:.02em}
+.wrap{max-width:1440px;margin:0 auto;padding:26px clamp(16px,3vw,32px) 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.marca{display:flex;align-items:center;gap:24px}
+.lg{display:flex;flex-direction:column;align-items:center;line-height:1}
+.lg .n{font-family:Montserrat;font-size:20px;display:flex}
+.lg .n i{font-style:normal;font-size:6px;font-weight:600;margin:5px 4px 0 0}
+.lg .n b{font-weight:600}.lg .n span{font-weight:200}
+.lg small{font-family:Montserrat;font-size:6px;letter-spacing:.5em;margin-top:6px;font-weight:600;opacity:.8}
+.tit{font-family:'Bodoni Moda';font-size:26px}
+.tit em{color:var(--champ2)}
+.ctrl{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ao{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--cinza)}
+.ao::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(95,191,127,.15);animation:p 2s infinite}
+@keyframes p{50%{box-shadow:0 0 0 7px rgba(95,191,127,0)}}
+.per{display:flex;gap:8px}
+.per button{font:inherit;font-size:12px;background:none;border:1px solid #333;color:var(--cinza);padding:8px 14px;cursor:pointer;transition:.3s}
+.per button:hover{color:var(--marfim)}
+.per button.on{border-color:var(--champ);color:var(--champ)}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.kpi{background:var(--card);border:1px solid var(--borda);padding:18px 18px 16px}
+.kpi.d{border-color:var(--champ);background:linear-gradient(180deg,rgba(198,174,134,.10),var(--card))}
+.kpi .l{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);min-height:26px}
+.kpi .v{font-family:'Bodoni Moda';font-size:32px;margin:6px 0 4px;white-space:nowrap}
+.kpi .s{font-size:12px;color:var(--verde)}
+.meio{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px}
+.card{background:var(--card);border:1px solid var(--borda);padding:18px 20px}
+.card h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);font-weight:500;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px}
+.card h5 b{color:var(--champ);font-weight:500}
+.tab{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6d6a65;text-align:right;font-weight:500;padding:6px}
+th:first-child,td:first-child{text-align:left}
+td{padding:11px 6px;border-top:1px solid #1d1d20;text-align:right;color:#d8d3cb;white-space:nowrap}
+td:first-child{white-space:normal}
+td:first-child{color:var(--marfim);font-weight:500}
+td .tg{font-size:9px;padding:2px 6px;margin-left:6px;border:1px solid #333;color:#9a968f}
+.funil{display:flex;flex-direction:column;gap:10px}
+.fl{display:grid;grid-template-columns:140px minmax(0,1fr) 54px;align-items:center;gap:10px;font-size:13px;color:#cfcac2}
+.fl .b{height:22px;background:linear-gradient(90deg,var(--champ),#8a7656);transition:width .8s cubic-bezier(.22,.8,.2,1)}
+.fl .n{text-align:right;font-family:'Bodoni Moda';font-size:18px}
+.rod{margin-top:22px;padding-top:16px;border-top:1px solid #1d1d20;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:12px;color:#9a968f}
+.rod div div{font-family:'Bodoni Moda';font-size:20px;margin-top:4px;color:var(--marfim)}
+.rod div:first-child div{color:var(--champ2)}
+svg text{font-family:Inter}
+.baixo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.lista{list-style:none}
+.lista li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid #1d1d20;font-size:13px;color:#d8d3cb}
+.lista li:first-child{border-top:0}
+.lista li b{font-weight:500;color:var(--marfim)}
+.lista li span{color:var(--cinza);white-space:nowrap}
+.lista li em{font-style:normal;color:var(--champ)}
+.pe{margin-top:26px;font-size:11px;color:#5d5a55;text-align:center;line-height:1.7}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.meio,.baixo{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi .v{font-size:26px}.tit{font-size:21px}.marca{gap:16px}.fl{grid-template-columns:110px minmax(0,1fr) 44px;font-size:12px}.rod{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="aviso">Demonstração · os números desta página são ilustrativos, para mostrar o formato do painel</div>
+<div class="wrap">
+  <div class="top">
+    <div class="marca">
+      <div class="lg"><div class="n"><i>DR.</i><b>LUIZ</b><span>NADLER</span></div><small>CIRURGIA PLÁSTICA</small></div>
+      <div class="tit">Painel de <em>resultados</em></div>
+    </div>
+    <div class="ctrl">
+      <div class="ao" id="atual">Atualizado há 12 min</div>
+      <div class="per" id="per"><button data-k="0.25">7 dias</button><button data-k="1" class="on">30 dias</button><button data-k="2.9">90 dias</button></div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Investimento</div><div class="v" data-f="inv" data-m="r">R$ 4.860</div><div class="s" id="invs">Meta R$ 3.910 · Google R$ 950</div></div>
+    <div class="kpi"><div class="l">Conversas</div><div class="v" data-f="conv">214</div><div class="s">▲ 18% vs. período anterior</div></div>
+    <div class="kpi"><div class="l">Consultas agendadas</div><div class="v" data-f="ag">46</div><div class="s">21% das conversas</div></div>
+    <div class="kpi"><div class="l">Consultas realizadas</div><div class="v" data-f="re">37</div><div class="s">80% de comparecimento</div></div>
+    <div class="kpi d"><div class="l">Custo por consulta realizada</div><div class="v">R$ 131</div><div class="s">▼ R$ 22 vs. período anterior</div></div>
+    <div class="kpi"><div class="l">Cirurgias agendadas</div><div class="v" data-f="cir">27</div><div class="s">decididas na consulta</div></div>
+  </div>
+
+  <div class="meio">
+    <div class="card">
+      <h5>Campanhas <b id="rotper">últimos 30 dias</b></h5>
+      <div class="tab"><table>
+        <thead><tr><th>Campanha</th><th>Invest.</th><th>Conversas</th><th>Consultas</th><th>Custo/consulta</th><th>Cirurgias</th></tr></thead>
+        <tbody id="camp"></tbody>
+      </table></div>
+      <svg viewBox="0 0 760 170" width="100%" height="190" preserveAspectRatio="none" style="margin-top:14px">
+        <defs><linearGradient id="gr" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c6ae86" stop-opacity=".35"/><stop offset="1" stop-color="#c6ae86" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="#1d1d20"><line x1="0" y1="40" x2="760" y2="40"/><line x1="0" y1="85" x2="760" y2="85"/><line x1="0" y1="130" x2="760" y2="130"/></g>
+        <path id="area" fill="url(#gr)"/><path id="linha" fill="none" stroke="#c6ae86" stroke-width="2"/><path id="linha2" fill="none" stroke="#6d6a65" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="4" y="20" fill="#8d8a84" font-size="11">Conversas por dia</text>
+        <text x="600" y="20" fill="#6d6a65" font-size="11">– – consultas agendadas</text>
+      </svg>
+    </div>
+    <div class="card">
+      <h5>Funil do período <b>do anúncio à cirurgia</b></h5>
+      <div class="funil" id="funil"></div>
+      <div class="rod">
+        <div>Onde o funil trava<div>Conversa → consulta</div></div>
+        <div>Conversas sem consulta marcada<div id="retomar">38 pacientes para retomar</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="baixo">
+    <div class="card">
+      <h5>Procedimentos mais procurados</h5>
+      <ul class="lista">
+        <li><b>Prótese de silicone</b><span><em>31%</em> das conversas</span></li>
+        <li><b>Abdominoplastia</b><span><em>22%</em></span></li>
+        <li><b>Lipoaspiração</b><span><em>17%</em></span></li>
+        <li><b>Blefaroplastia</b><span><em>15%</em></span></li>
+        <li><b>Mamoplastia redutora</b><span><em>9%</em></span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h5>Atendimento <b>IA + equipe</b></h5>
+      <ul class="lista">
+        <li><b>Tempo da 1ª resposta</b><span><em>8 s</em> (IA) · 3 min (média geral)</span></li>
+        <li><b>Conversas fora do horário</b><span><em>41%</em> atendidas pela IA</span></li>
+        <li><b>Lembretes enviados</b><span><em>46</em> · 43 confirmados</span></li>
+        <li><b>Faltas remarcadas</b><span><em>6 de 9</em></span></li>
+        <li><b>Retomadas automáticas</b><span><em>112</em> mensagens</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h5>Reputação <b>Google</b></h5>
+      <ul class="lista">
+        <li><b>Avaliações novas no período</b><span><em>+14</em></span></li>
+        <li><b>Nota média</b><span><em>5,0</em> ★★★★★</span></li>
+        <li><b>Pedidos enviados no pós-operatório</b><span><em>21</em></span></li>
+        <li><b>Taxa de resposta aos pedidos</b><span><em>67%</em></span></li>
+        <li><b>Buscas pelo nome do Dr. Luiz</b><span><em>▲ 32%</em></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="pe">Painel de demonstração preparado por Vinicius Augusto de Souza · Gestão de Tráfego e Inteligência de Dados.<br>
+  No painel real, os números vêm direto do Meta, do Google e do Kommo e se atualizam de hora em hora.</p>
+</div>
+
+<script>
+(function(){
+  // mês-base; 7 e 90 dias são escalas dele
+  var base = {inv:4860, conv:214, ag:46, re:37, cir:27};
+  var camp = [
+    ['[MAMA] Prótese e mastopexia','META',1640,82,16,10],
+    ['[ABDÔMEN] Abdominoplastia e lipo','META',1420,64,11,8],
+    ['[FACE] Blefaroplastia','META',850,39,6,4],
+    ['[PESQUISA] Cirurgião plástico Umuarama','GOOGLE',950,29,13,5]
+  ];
+  var funil = [['Conversas iniciadas',214],['Triadas pela IA',188],['Consulta agendada',46],['Consulta realizada',37],['Orçamento enviado',33],['Cirurgia agendada',27]];
+  function br(n){ return Math.round(n).toLocaleString('pt-BR'); }
+
+  function desenha(k){
+    document.querySelectorAll('[data-f]').forEach(function(el){
+      var v = base[el.dataset.f] * k;
+      el.textContent = (el.dataset.m === 'r' ? 'R$ ' : '') + br(v);
+    });
+    document.getElementById('invs').textContent = 'Meta R$ ' + br(3910*k) + ' · Google R$ ' + br(950*k);
+    document.getElementById('camp').innerHTML = camp.map(function(c){
+      return '<tr><td>'+c[0]+'<span class="tg">'+c[1]+'</span></td><td>R$ '+br(c[2]*k)+'</td><td>'+br(c[3]*k)+'</td><td>'+br(c[4]*k)+'</td><td>R$ '+br(c[2]/c[4])+'</td><td>'+br(c[5]*k)+'</td></tr>';
+    }).join('');
+    document.getElementById('funil').innerHTML = funil.map(function(f,i){
+      var w = i < 2 ? f[1]/214*100 : Math.max(8, f[1]/214*100*2);
+      return '<div class="fl">'+f[0]+'<div class="b" style="width:'+w.toFixed(0)+'%"></div><span class="n">'+br(f[1]*k)+'</span></div>';
+    }).join('');
+    document.getElementById('retomar').textContent = br(38*k) + ' pacientes para retomar';
+    var dias = k < .5 ? 7 : k > 2 ? 90 : 30;
+    document.getElementById('rotper').textContent = 'últimos ' + dias + ' dias';
+    grafico(dias);
+  }
+
+  // série com tendência de alta e um pouco de ruído fixo
+  function grafico(dias){
+    var n = Math.min(dias, 45), pts = [], pts2 = [];
+    for (var i = 0; i < n; i++){
+      var x = i/(n-1)*760;
+      var y = 128 - i/(n-1)*80 + Math.sin(i*1.7)*7 + Math.cos(i*.9)*4;
+      pts.push(x.toFixed(1)+' '+y.toFixed(1));
+      pts2.push(x.toFixed(1)+' '+(150 - i/(n-1)*32 + Math.sin(i*1.3)*2).toFixed(1));
+    }
+    var d = 'M' + pts.join(' L');
+    document.getElementById('linha').setAttribute('d', d);
+    document.getElementById('area').setAttribute('d', d + ' L760 170 L0 170Z');
+    document.getElementById('linha2').setAttribute('d', 'M' + pts2.join(' L'));
+  }
+
+  document.getElementById('per').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('#per button').forEach(function(x){ x.classList.toggle('on', x === b); });
+    desenha(+b.dataset.k);
+  });
+  desenha(1);
+})();
+</script>
+</body>
+</html>
